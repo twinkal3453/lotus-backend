@@ -41,6 +41,7 @@ mongoose
   });
 
 // My routes
+app.use("/uploads", express.static("uploads"));
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", collectionRoutes);
@@ -53,7 +54,7 @@ app.use("/api", ratingRoutes);
 app.use("/api", orderRoutes);
 
 // PORT
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 
 // Starting a server
 app.listen(port, () => {
