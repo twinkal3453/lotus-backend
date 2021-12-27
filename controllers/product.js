@@ -57,7 +57,7 @@ export const getAllProducts = (req, res) => {
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
 
   Product.find()
-    .select("-photos")
+    // .select("-photos")
     .populate("category")
     .populate("collections")
     .sort([[sortBy, "asc"]])
