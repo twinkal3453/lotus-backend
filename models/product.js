@@ -30,12 +30,12 @@ const productSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    category: {
+    categoryData: {
       type: ObjectId,
       ref: "Category",
       required: true,
     },
-    collections: {
+    collectionData: {
       type: ObjectId,
       ref: "Collection",
       required: true,

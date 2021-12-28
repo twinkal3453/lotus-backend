@@ -6,8 +6,8 @@ export const getProductById = (req, res, next, id) => {
   Product.findById(id)
 
     // if any error occors on collection for fixing
-    .populate("category")
-    .populate("collections")
+    .populate("categoryData")
+    .populate("collectionData")
     .exec((err, product) => {
       if (err) {
         return res.status(400).json({
@@ -31,8 +31,6 @@ export const createProduct = (req, res) => {
   // console.log(req.body.photos);
 
   const product = new Product(req.body);
-
-  console.log(product);
 
   if (!req.files) {
     return res.status(400).json({
@@ -61,8 +59,8 @@ export const getAllProducts = (req, res) => {
 
   Product.find()
     // .select("-photos")
-    .populate("category")
-    .populate("collections")
+    .populate("categoryData")
+    .populate("collectionData")
     .sort([[sortBy, "asc"]])
     .limit(limit)
     .exec((err, products) => {
