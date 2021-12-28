@@ -32,11 +32,14 @@ export const createProduct = (req, res) => {
 
   const product = new Product(req.body);
 
+  console.log(product);
+
   if (!req.files) {
     return res.status(400).json({
       error: "Pictures is not found!",
     });
   }
+
   product.save((err, product) => {
     if (err) {
       return res.status(400).json({
