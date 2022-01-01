@@ -18,6 +18,7 @@ import brandRoutes from "./routes/brand.js";
 import carouselRoutes from "./routes/carousel.js";
 import ratingRoutes from "./routes/ratings.js";
 import orderRoutes from "./routes/order.js";
+import stripeRoutes from "./routes/stripePayment.js";
 
 // App Config
 const app = express();
@@ -52,6 +53,7 @@ app.use("/api", brandRoutes);
 app.use("/api", carouselRoutes);
 app.use("/api", ratingRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", stripeRoutes);
 
 // PORT
 const port = process.env.PORT || 8000;

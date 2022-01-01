@@ -7,6 +7,7 @@ const ProductCartSchema = new mongoose.Schema({
     ref: "Product",
   },
   size: String,
+  color: String,
   name: String,
   count: Number,
   price: Number,

@@ -123,11 +123,16 @@ export const getAllUniqueCategories = (req, res) => {
 };
 
 export const updateStock = (req, res, next) => {
-  let myOperations = req.body.order.product.map((prod) => {
+  let myOperations = req.body.order.products.map((prod) => {
     return {
       updateOne: {
         filter: { _id: prod._id },
-        update: { $inc: { stock: -prod.count, sold: +prod.count } },
+        update: {
+          $inc: {
+            stock: -prod.count,
+            sold: +prod.count,
+          },
+        },
       },
     };
   });
