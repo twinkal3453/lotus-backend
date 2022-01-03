@@ -1,7 +1,5 @@
 import Stripe from "stripe";
-const stripe = new Stripe(
-  "sk_test_51Ilqt4SAJx404mpSXw7SCKuUE0NS3gJZaeBFjHa2llhCsrmL3jKJ3eXMvZtA2678v10L5E7xDshOyCvMRw6ZAw2T00BCdIeQ5K"
-);
+const stripe = new Stripe(process.env.GETWAY_KEY);
 import { v4 as uuidv4 } from "uuid";
 
 export const makepayment = (req, res) => {
