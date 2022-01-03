@@ -17,7 +17,7 @@ export const getOrderById = (req, res, next, id) => {
 
 export const createOrder = (req, res) => {
   req.body.order.user = req.profile;
-  const order = new Order(req.body.order);
+  var order = new Order(req.body.order);
 
   order.save((err, order) => {
     if (err) {

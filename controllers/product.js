@@ -124,6 +124,7 @@ export const getAllUniqueCategories = (req, res) => {
 
 export const updateStock = (req, res, next) => {
   let myOperations = req.body.order.products.map((prod) => {
+    console.log(prod.count);
     return {
       updateOne: {
         filter: { _id: prod._id },

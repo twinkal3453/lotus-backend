@@ -11,8 +11,7 @@ export const makepayment = (req, res) => {
   let actualPrice = [];
   products.map((p) => {
     actualPrice.push(
-      p.price * parseFloat(p.numbers) -
-        (p.price * parseFloat(p.numbers) * p.discount) / 100
+      p.price * p.count - (p.price * p.count * p.discount) / 100
     );
   });
   let amount = actualPrice
