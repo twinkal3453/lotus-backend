@@ -10,6 +10,7 @@ import {
   updateProduct,
   delteProduct,
   getAllUniqueCategories,
+  getAllUniqueCollections,
 } from "../controllers/product.js";
 import { isAdmin, isAuthenticated, isSignedIn } from "../controllers/auth.js";
 import { getUserById } from "../controllers/user.js";
@@ -50,5 +51,6 @@ router.delete(
 );
 
 router.get("/products/categories", getAllUniqueCategories);
+router.get("/products/collections", getAllUniqueCollections);
 
 export default router;

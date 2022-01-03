@@ -56,11 +56,15 @@ export const getProduct = (req, res) => {
 export const getAllProducts = (req, res) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : 24;
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+  let categoryData = req.query.category;
+  let collectionData = req.query.collection;
 
-  Product.find()
+  Product.find(categoryData && { categoryData })
+
     // .select("-photos")
     .populate("categoryData")
     .populate("collectionData")
+    .find(collectionData && { collectionData })
     .sort([[sortBy, "asc"]])
     .limit(limit)
     .exec((err, products) => {
@@ -112,7 +116,7 @@ export const delteProduct = (req, res) => {
 };
 
 export const getAllUniqueCategories = (req, res) => {
-  Product.distinct("category", {}, (err, category) => {
+  Product.distinct("categoryData", {}, (err, category) => {
     if (err) {
       return res.status(400).json({
         error: "No Category found",
@@ -122,9 +126,19 @@ export const getAllUniqueCategories = (req, res) => {
   });
 };
 
+export const getAllUniqueCollections = (req, res) => {
+  Product.distinct("collectionData", {}, (err, collection) => {
+    if (err) {
+      return res.status(400).json({
+        error: "No Category found",
+      });
+    }
+    res.json(collection);
+  });
+};
+
 export const updateStock = (req, res, next) => {
   let myOperations = req.body.order.products.map((prod) => {
-    console.log(prod.count);
     return {
       updateOne: {
         filter: { _id: prod._id },
