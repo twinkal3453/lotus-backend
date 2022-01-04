@@ -69,10 +69,11 @@ export const pushOrderInPurchaseList = (req, res, next) => {
       _id: product._id,
       name: product.name,
       description: product.description,
-      category: product.category,
-      quantity: product.quantity,
+      category: product.categoryData,
+      collection: product.collectionData,
+      quantity: product.count,
       amount: req.body.order.amount,
-      trnsaction_id: req.body.order.trnsaction_id,
+      transaction_id: req.body.order.transaction_id,
     });
   });
 
