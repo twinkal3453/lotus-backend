@@ -54,7 +54,7 @@ export const getProduct = (req, res) => {
 };
 
 export const getAllProducts = (req, res) => {
-  let limit = req.query.limit ? parseInt(req.query.limit) : 24;
+  let limit = req.query.limit ? parseInt(req.query.limit) : 36;
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
   let categoryData = req.query.category;
   let collectionData = req.query.collection;
