@@ -54,18 +54,21 @@ export const getProduct = (req, res) => {
 };
 
 export const getAllProducts = (req, res) => {
-  let limit = req.query.limit ? parseInt(req.query.limit) : 36;
+  let limit = req.query.limit ? parseInt(req.query.limit) : 24;
+  let page = req.query.page ? parseInt(req.query.page) : 1;
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
   let categoryData = req.query.category;
   let collectionData = req.query.collection;
 
-  Product.find(categoryData && { categoryData })
+  const startIndex = (page - 1) * limit;
 
-    // .select("-photos")
+  Product.find({})
     .populate("categoryData")
     .populate("collectionData")
+    .find(categoryData && { categoryData })
     .find(collectionData && { collectionData })
     .sort([[sortBy, "asc"]])
+    .skip(startIndex)
     .limit(limit)
     .exec((err, products) => {
       if (err) {
