@@ -18,22 +18,12 @@ router.param("ratingsId", getRatingById);
 
 // Actual routes goes here
 // Create
-router.post(
-  "/rating/create/:userId",
-  isSignedIn,
-  isAuthenticated,
-  createRatings
-);
+router.post("/rating/create", createRatings);
 
 router.get("/rating/:ratingsId", getRating);
 router.get("/ratings", getAllRatings);
 
-router.put(
-  "/update/rating/:ratingsId/:userId",
-  isSignedIn,
-  isAuthenticated,
-  updateRatings
-);
+router.put("/update/rating/:ratingsId/:userId", updateRatings);
 
 router.delete(
   "/delete/rating/:ratingsId/:userId",

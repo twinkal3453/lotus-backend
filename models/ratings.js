@@ -10,7 +10,7 @@ const ratingSchema = new mongoose.Schema(
       maxlength: 32,
     },
     star: {
-      type: Number,
+      type: String,
       required: true,
       maxlength: 32,
     },

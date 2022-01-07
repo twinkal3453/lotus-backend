@@ -1,15 +1,17 @@
 import Rate from "../models/ratings.js";
 
 export const getRatingById = (req, res, next, id) => {
-  Rate.findById(id).exec((err, ratings) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Rate not found in DB",
-      });
-    }
-    req.ratings = ratings;
-    next();
-  });
+  Rate.findById(id)
+    .populate("product")
+    .exec((err, ratings) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Rate not found in DB",
+        });
+      }
+      req.ratings = ratings;
+      next();
+    });
 };
 
 export const createRatings = (req, res) => {
@@ -30,14 +32,17 @@ export const getRating = (req, res) => {
 };
 
 export const getAllRatings = (req, res) => {
-  Rate.find().exec((err, ratings) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Not able to get ratings",
-      });
-    }
-    res.json(ratings);
-  });
+  let product = req.query.product;
+  Rate.find(product && { product })
+    .populate("product")
+    .exec((err, ratings) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Not able to get ratings",
+        });
+      }
+      res.json(ratings);
+    });
 };
 
 export const updateRatings = (req, res) => {
