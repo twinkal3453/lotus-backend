@@ -45,16 +45,6 @@ const userSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-
-    wishList: {
-      type: Array,
-      default: [],
-    },
-
-    cart: {
-      type: Array,
-      default: [],
-    },
   },
 
   { timestamps: true }

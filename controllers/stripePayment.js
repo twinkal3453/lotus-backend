@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const makepayment = (req, res) => {
   const { products, token } = req.body;
-  console.log("PRODUCTS", products);
+  // console.log("PRODUCTS", products);
 
   let actualPrice = [];
   products.map((p) => {

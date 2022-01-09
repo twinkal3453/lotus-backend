@@ -21,7 +21,7 @@ const OrderSchema = new mongoose.Schema(
     products: [ProductCartSchema],
     transaction_id: { type: String },
     amount: { type: Number },
-    address: String,
+    address: Object,
     status: {
       type: String,
       default: "Received",
@@ -38,4 +38,5 @@ const OrderSchema = new mongoose.Schema(
 
 const Order = mongoose.model("Order", OrderSchema);
 
-export default { Order, ProductCart };
+export default Order;
+export { ProductCart };
