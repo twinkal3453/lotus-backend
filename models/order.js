@@ -6,6 +6,7 @@ const ProductCartSchema = new mongoose.Schema({
     type: ObjectId,
     ref: "Product",
   },
+  photos: Array,
   size: String,
   color: String,
   name: String,

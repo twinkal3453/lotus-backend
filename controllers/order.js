@@ -18,8 +18,6 @@ export const getOrderById = (req, res, next, id) => {
 export const createOrder = (req, res) => {
   const user = req.profile;
 
-  console.log("OrderData----->", req.body);
-
   const order = new Order(req.body);
 
   order.user = user._id;
@@ -35,7 +33,7 @@ export const createOrder = (req, res) => {
 
 export const getAllOrders = (req, res) => {
   Order.find()
-    .populate("user", "_id name")
+    .populate("user", "_id name email")
     .exec((err, order) => {
       if (err) {
         return res.status(400).json({
