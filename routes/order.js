@@ -10,6 +10,7 @@ import {
   getAllOrders,
   updateStatus,
   getOrderStatus,
+  getOrder,
 } from "../controllers/order.js";
 
 // params
@@ -37,9 +38,18 @@ router.get(
   getAllOrders
 );
 
+// read
+router.get(
+  "/order/:orderId/:userId",
+  isSignedIn,
+  isAuthenticated,
+  isAdmin,
+  getOrder
+);
+
 // status of order
 router.get(
-  "/order/status/:userId",
+  "/order/get/status/:userId",
   isSignedIn,
   isAuthenticated,
   isAdmin,

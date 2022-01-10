@@ -7,12 +7,16 @@ export const getOrderById = (req, res, next, id) => {
     .exec((err, order) => {
       if (err) {
         return res.status(400).json({
-          error: "No order found in DB",
+          error: "error ---------> No order found in DB",
         });
       }
       req.order = order;
       next();
     });
+};
+
+export const getOrder = (req, res) => {
+  return res.json(req.order);
 };
 
 export const createOrder = (req, res) => {
@@ -49,8 +53,8 @@ export const getOrderStatus = (req, res) => {
 };
 
 export const updateStatus = (req, res) => {
-  Order.update(
-    { _id: req.body.orderId },
+  Order.updateOne(
+    { _id: req.body._id },
     { $set: { status: req.body.status } },
     (err, order) => {
       if (err) {

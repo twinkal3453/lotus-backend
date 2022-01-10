@@ -23,6 +23,7 @@ const OrderSchema = new mongoose.Schema(
     transaction_id: { type: String },
     amount: { type: Number },
     address: Object,
+    type: String,
     status: {
       type: String,
       default: "Received",
