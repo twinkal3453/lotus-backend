@@ -36,8 +36,9 @@ export const createOrder = (req, res) => {
 };
 
 export const getAllOrders = (req, res) => {
-  Order.find()
+  Order.find({})
     .populate("user", "_id name email")
+    .sort([["createdAt", -1]])
     .exec((err, order) => {
       if (err) {
         return res.status(400).json({
