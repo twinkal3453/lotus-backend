@@ -72,7 +72,9 @@ export const pushOrderInPurchaseList = (req, res, next) => {
       description: product.description,
       category: product.categoryData,
       collection: product.collectionData,
+      price: product.price,
       quantity: product.count,
+      discount: product.discount,
       amount: req.body.amount,
       transaction_id: req.body.transaction_id,
     });
