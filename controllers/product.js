@@ -53,6 +53,35 @@ export const getProduct = (req, res) => {
   return res.json(req.product);
 };
 
+// export const getAllProducts = (req, res) => {
+//   let limit = req.query.limit ? parseInt(req.query.limit) : 24;
+//   let page = req.query.page ? parseInt(req.query.page) : 1;
+//   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+//   let categoryData = req.query.category;
+//   let collectionData = req.query.collection;
+
+//   const startIndex = (page - 1) * limit;
+
+//   Product.find({})
+//     .populate("categoryData")
+//     .populate("collectionData")
+//     .find(categoryData && { categoryData })
+//     .find(collectionData && { collectionData })
+//     .sort([[sortBy, "asc"]])
+//     .skip(startIndex)
+//     .limit(limit)
+//     .exec((err, products) => {
+//       if (err) {
+//         return res.status(400).json({
+//           error: "Products not found!",
+//         });
+//       }
+//       res.json(products);
+//     });
+// };
+
+// paginate methods running here
+
 export const getAllProducts = (req, res) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : 24;
   let page = req.query.page ? parseInt(req.query.page) : 1;
@@ -60,25 +89,18 @@ export const getAllProducts = (req, res) => {
   let categoryData = req.query.category;
   let collectionData = req.query.collection;
 
-  const startIndex = (page - 1) * limit;
-
   Product.find({})
     .populate("categoryData")
     .populate("collectionData")
     .find(categoryData && { categoryData })
     .find(collectionData && { collectionData })
     .sort([[sortBy, "asc"]])
-    .skip(startIndex)
-    .limit(limit)
-    .exec((err, products) => {
-      if (err) {
-        return res.status(400).json({
-          error: "Products not found!",
-        });
-      }
-      res.json(products);
-    });
+    .paginate({ page, limit })
+    .then((result) => res.json(result))
+    .catch((err) => res.json(err));
 };
+
+// paginate method ending here
 
 export const updateProduct = (req, res) => {
   let product = req.product;
