@@ -37,10 +37,10 @@ router.delete(
   deleteBrand
 );
 
-const next = (req, res, next) => {
-  console.log("Twinkal");
-  next();
-};
+// const next = (req, res, next) => {
+//   console.log("Twinkal");
+//   next();
+// };
 
 router.put(
   "/update/brand/:brandId/:userId",

@@ -38,7 +38,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("DB CONNECTED!");
+    console.log("CONNECTED TO DATABASE");
   });
 
 // My routes
